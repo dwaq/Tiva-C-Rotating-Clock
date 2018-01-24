@@ -198,7 +198,7 @@
   )
 
   (module Pin_Headers:Pin_Header_Straight_1x10_Pitch2.54mm (layer F.Cu) (tedit 59650532) (tstamp 5A68B6AC)
-    (at 100 100)
+    (at 101.6 101.6)
     (descr "Through hole straight pin header, 1x10, 2.54mm pitch, single row")
     (tags "Through hole pin header THT 1x10 2.54mm single row")
     (path /5A5BEAC9)
@@ -254,7 +254,7 @@
   )
 
   (module Pin_Headers:Pin_Header_Straight_1x10_Pitch2.54mm (layer F.Cu) (tedit 59650532) (tstamp 5A68B6BA)
-    (at 191.77 102.235)
+    (at 147.32 101.6)
     (descr "Through hole straight pin header, 1x10, 2.54mm pitch, single row")
     (tags "Through hole pin header THT 1x10 2.54mm single row")
     (path /5A5BED3B)
@@ -310,7 +310,7 @@
   )
 
   (module Pin_Headers:Pin_Header_Straight_1x10_Pitch2.54mm (layer F.Cu) (tedit 59650532) (tstamp 5A68B6C8)
-    (at 118.11 101.6)
+    (at 104.14 101.6)
     (descr "Through hole straight pin header, 1x10, 2.54mm pitch, single row")
     (tags "Through hole pin header THT 1x10 2.54mm single row")
     (path /5A5BEB8A)
@@ -366,7 +366,7 @@
   )
 
   (module Pin_Headers:Pin_Header_Straight_1x10_Pitch2.54mm (layer F.Cu) (tedit 59650532) (tstamp 5A68B6D6)
-    (at 183.515 101.6)
+    (at 144.78 101.6)
     (descr "Through hole straight pin header, 1x10, 2.54mm pitch, single row")
     (tags "Through hole pin header THT 1x10 2.54mm single row")
     (path /5A5BED0F)
@@ -422,7 +422,7 @@
   )
 
   (module Pin_Headers:Pin_Header_Straight_1x20_Pitch2.54mm (layer F.Cu) (tedit 59650532) (tstamp 5A68B6EE)
-    (at 133.35 104.14)
+    (at 132.715 99.06)
     (descr "Through hole straight pin header, 1x20, 2.54mm pitch, single row")
     (tags "Through hole pin header THT 1x20 2.54mm single row")
     (path /5A5BED71)
@@ -498,7 +498,7 @@
   )
 
   (module Pin_Headers:Pin_Header_Straight_1x20_Pitch2.54mm (layer F.Cu) (tedit 59650532) (tstamp 5A68B706)
-    (at 148.5011 105.0036)
+    (at 120.65 98.425)
     (descr "Through hole straight pin header, 1x20, 2.54mm pitch, single row")
     (tags "Through hole pin header THT 1x20 2.54mm single row")
     (path /5A5BEDA4)
