@@ -28,6 +28,7 @@ LIBS:opto
 LIBS:atmel
 LIBS:contrib
 LIBS:valves
+LIBS:TivaClock-cache
 EELAYER 25 0
 EELAYER END
 $Descr A4 11693 8268
@@ -174,4 +175,51 @@ Text Label 6300 3750 0    60   ~ 0
 X0
 Text Label 6300 3650 0    60   ~ 0
 VCC
+Wire Wire Line
+	5000 4050 4350 4050
+Wire Wire Line
+	4350 4050 4350 3350
+Wire Wire Line
+	4350 3350 9000 3350
+Wire Wire Line
+	9000 3350 9000 2000
+Wire Wire Line
+	9000 2000 8700 2000
+Wire Wire Line
+	8700 2300 8900 2300
+Wire Wire Line
+	8900 2300 8900 3200
+Wire Wire Line
+	8900 3200 4200 3200
+Wire Wire Line
+	4200 3200 4200 4450
+Wire Wire Line
+	4200 4450 5000 4450
+Wire Wire Line
+	5000 4550 2150 4550
+Wire Wire Line
+	2150 4550 2150 2100
+Wire Wire Line
+	2150 2100 2600 2100
+Wire Wire Line
+	5000 4650 2300 4650
+Wire Wire Line
+	2300 4650 2300 2200
+Wire Wire Line
+	2300 2200 2600 2200
+Wire Wire Line
+	3550 2000 7000 2000
+Wire Wire Line
+	7000 2000 7000 1700
+Wire Wire Line
+	7000 1700 8800 1700
+Wire Wire Line
+	8800 1700 8800 1900
+Wire Wire Line
+	8800 1900 8700 1900
+Wire Wire Line
+	5000 5550 3900 5550
+Wire Wire Line
+	3900 5550 3900 2000
+Connection ~ 3900 2000
 $EndSCHEMATC
