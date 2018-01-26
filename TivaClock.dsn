@@ -42,6 +42,9 @@
       (place J5 134620 -127000 front 180 (PN Conn_01x20))
       (place J6 119380 -78740 front 0 (PN Conn_01x20))
     )
+    (component Connectors:GS3
+      (place J7 102870 -95885 front 90 (PN GS3))
+    )
   )
   (library
     (image Pin_Headers:Pin_Header_Straight_1x10_Pitch2.54mm
@@ -108,9 +111,26 @@
       (pin Oval[A]Pad_1700x1700_um 19 0 -45720)
       (pin Oval[A]Pad_1700x1700_um 20 0 -48260)
     )
+    (image Connectors:GS3
+      (outline (path signal 50  -1150 2150  1150 2150))
+      (outline (path signal 50  1150 2150  1150 -2150))
+      (outline (path signal 50  1150 -2150  -1150 -2150))
+      (outline (path signal 50  -1150 -2150  -1150 2150))
+      (outline (path signal 120  -890 1910  -890 -1910))
+      (outline (path signal 120  -890 -1910  890 -1910))
+      (outline (path signal 120  890 -1910  890 1910))
+      (outline (path signal 120  -890 1910  890 1910))
+      (pin Rect[T]Pad_1270x970_um 1 0 1270)
+      (pin Rect[T]Pad_1270x970_um 2 0 0)
+      (pin Rect[T]Pad_1270x970_um 3 0 -1270)
+    )
     (padstack Oval[A]Pad_1700x1700_um
       (shape (path F.Cu 1700  0 0  0 0))
       (shape (path B.Cu 1700  0 0  0 0))
+      (attach off)
+    )
+    (padstack Rect[T]Pad_1270x970_um
+      (shape (rect F.Cu -635 -485 635 485))
       (attach off)
     )
     (padstack Rect[A]Pad_1700x1700_um
@@ -126,7 +146,7 @@
   )
   (network
     (net "Net-(J1-Pad1)"
-      (pins J1-1)
+      (pins J1-1 J7-1)
     )
     (net /X5
       (pins J1-2 J6-14)
@@ -186,7 +206,7 @@
       (pins J2-10 J6-7)
     )
     (net "Net-(J3-Pad1)"
-      (pins J3-1)
+      (pins J3-1 J7-3)
     )
     (net "Net-(J3-Pad3)"
       (pins J3-3)
@@ -263,15 +283,12 @@
     (net "Net-(J6-Pad10)"
       (pins J6-10)
     )
-    (net "Net-(J6-Pad11)"
-      (pins J6-11)
-    )
-    (net "Net-(J6-Pad20)"
-      (pins J6-20)
+    (net /VCC
+      (pins J6-11 J6-20 J7-2)
     )
     (class kicad_default "" /1302CLK /1302IO /1302RST /BEEP /Bit0 /Bit1 /Bit10
       /Bit11 /Bit2 /Bit3 /Bit4 /Bit5 /Bit6 /Bit7 /Bit8 /Bit9 /DS18B20 /GND
-      /MODE /PLUS /RESET /RXD /TXD /X0 /X1 /X2 /X3 /X4 /X5 /X6 /X7 "Net-(J1-Pad1)"
+      /MODE /PLUS /RESET /RXD /TXD /VCC /X0 /X1 /X2 /X3 /X4 /X5 /X6 /X7 "Net-(J1-Pad1)"
       "Net-(J3-Pad1)" "Net-(J3-Pad10)" "Net-(J3-Pad3)" "Net-(J3-Pad4)" "Net-(J3-Pad6)"
       "Net-(J4-Pad1)" "Net-(J4-Pad2)" "Net-(J5-Pad18)" "Net-(J5-Pad19)" "Net-(J5-Pad6)"
       "Net-(J5-Pad7)" "Net-(J5-Pad8)" "Net-(J6-Pad10)" "Net-(J6-Pad11)" "Net-(J6-Pad20)"
