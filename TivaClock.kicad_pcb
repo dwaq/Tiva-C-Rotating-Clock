@@ -3,7 +3,7 @@
   (general
     (links 32)
     (no_connects 32)
-    (area 0 0 0 0)
+    (area 96.852381 95.12 152.06762 150.725)
     (thickness 1.6)
     (drawings 0)
     (tracks 0)
@@ -62,6 +62,7 @@
     (pad_drill 0.762)
     (pad_to_mask_clearance 0.2)
     (aux_axis_origin 0 0)
+    (grid_origin 156.21 113.03)
     (visible_elements FFFFFF7F)
     (pcbplotparams
       (layerselection 0x00030_80000001)
@@ -422,7 +423,7 @@
   )
 
   (module Pin_Headers:Pin_Header_Straight_1x20_Pitch2.54mm (layer F.Cu) (tedit 59650532) (tstamp 5A68B6EE)
-    (at 132.715 99.06)
+    (at 134.62 96.52)
     (descr "Through hole straight pin header, 1x20, 2.54mm pitch, single row")
     (tags "Through hole pin header THT 1x20 2.54mm single row")
     (path /5A5BED71)
@@ -498,7 +499,7 @@
   )
 
   (module Pin_Headers:Pin_Header_Straight_1x20_Pitch2.54mm (layer F.Cu) (tedit 59650532) (tstamp 5A68B706)
-    (at 120.65 98.425)
+    (at 119.38 96.52)
     (descr "Through hole straight pin header, 1x20, 2.54mm pitch, single row")
     (tags "Through hole pin header THT 1x20 2.54mm single row")
     (path /5A5BEDA4)
