@@ -2,10 +2,10 @@
 
   (general
     (links 36)
-    (no_connects 36)
+    (no_connects 0)
     (area 96.852381 75.435 152.06762 130.405)
     (thickness 1.6)
-    (drawings 0)
+    (drawings 4)
     (tracks 350)
     (zones 0)
     (modules 7)
@@ -65,8 +65,8 @@
     (grid_origin 156.21 113.03)
     (visible_elements 7FFFFFFF)
     (pcbplotparams
-      (layerselection 0x00030_80000001)
-      (usegerberextensions false)
+      (layerselection 0x010f0_80000001)
+      (usegerberextensions true)
       (excludeedgelayer true)
       (linewidth 0.100000)
       (plotframeref false)
@@ -86,9 +86,9 @@
       (subtractmaskfromsilk false)
       (outputformat 1)
       (mirror false)
-      (drillshape 1)
+      (drillshape 0)
       (scaleselection 1)
-      (outputdirectory ""))
+      (outputdirectory Gerbers/))
   )
 
   (net 0 "")
@@ -599,6 +599,11 @@
     (pad 3 smd rect (at 0 1.27 90) (size 1.27 0.97) (layers F.Cu F.Paste F.Mask)
       (net 21 "Net-(J3-Pad1)"))
   )
+
+  (gr_line (start 97.79 75.565) (end 150.495 75.565) (angle 90) (layer Edge.Cuts) (width 0.15))
+  (gr_line (start 97.79 129.54) (end 97.79 75.565) (angle 90) (layer Edge.Cuts) (width 0.15))
+  (gr_line (start 150.495 129.54) (end 97.79 129.54) (angle 90) (layer Edge.Cuts) (width 0.15))
+  (gr_line (start 150.495 129.54) (end 150.495 75.565) (angle 90) (layer Edge.Cuts) (width 0.15))
 
   (segment (start 101.6 100.875) (end 101.6 101.6) (width 0.25) (layer F.Cu) (net 1))
   (segment (start 101.6 100.75) (end 101.6 100.875) (width 0.25) (layer F.Cu) (net 1))
