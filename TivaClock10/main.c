@@ -53,15 +53,20 @@ int main(void) {
     // set up IO for RTC
     rtcSetup();
 
-    // get time from RTC
-    rtcGetTime();
-
     // set up IO for display
     displaySetup();
 
     // Loop forever
     while (1) {
-        displayDigits(1, 2, 1, 3, 4);
+        // get time from RTC
+        int seconds = rtcGetTime();
+
+        // format based on datasheet
+        int secL = (seconds & 0b01110000) >> 4;
+        int secR = (seconds & 0b00001111);
+
+        // display
+        displayDigits(1, 2, 1, secL, secR);
 
         displaySeconds(counter);
     }
