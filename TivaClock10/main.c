@@ -71,9 +71,11 @@ int main(void) {
         int secL = (time & 0b01110000) >> 4;
         int secR = (time & 0b00001111);
 
+        int seconds = (secL * 10) + secR;
+
         // display the time
         displayDigits(hourL, hourR, 1, minL, minR);
 
-        displaySeconds(counter);
+        displaySeconds(seconds);
     }
 }
