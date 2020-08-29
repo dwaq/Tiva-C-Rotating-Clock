@@ -7,6 +7,8 @@
 #include "driverlib/gpio.h"
 #include "driverlib/sysctl.h"
 
+#define BLANK 0x10
+
 // set all LED pins to outputs
 void displaySetup(void) {
     // Enable the GPIO ports
@@ -49,7 +51,12 @@ void displaySetup(void) {
 // cycle through and display each digit
 // dp is for decimal point: 0 for off; 1 for on
 void displayDigits(int dig1, int dig2, int dp, int dig3, int dig4) {
-    setDigit(1, dig1);
+    // don't display anything on dig1 if it's '0'
+    if(dig1 == 0)
+        setDigit(1, BLANK);
+    else
+        setDigit(1, dig1);
+
     setDigit(2, dig2);
     setDigit(3, dig3);
     setDigit(4, dig4);
@@ -159,9 +166,11 @@ void setSegment(int number) {
         // A E F G
         GPIOPinWrite(GPIO_PORTB_BASE, 0xFF, 0b10001110);
         break;
-        //default:
+    default:
         // case BLANK falls through here
-        // just turns off the segment by initial "reset all segments" code
+        // turns off all of the segments
+        GPIOPinWrite(GPIO_PORTB_BASE, 0xFF, 0b11111111);
+        break;
     };
     Delay(500);
 }
