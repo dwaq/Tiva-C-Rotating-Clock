@@ -33,7 +33,7 @@ void rtcSetup(void) {
 }
 
 void sendBit(int bit) {
-    // set I/O
+    // set I/O according to `bit`
     GPIOPinWrite(GPIO_PORTC_BASE, GPIO_PIN_4, bit << 4);
     // wait 200 ns
     DelayRTC(20);
@@ -45,16 +45,15 @@ void sendBit(int bit) {
 
     // set CLK low
     GPIOPinWrite(GPIO_PORTC_BASE, GPIO_PIN_5, 0);
-    // wait between 200-800 ns
+    // wait between 200-800 ns (make it even)
     DelayRTC(100);
 }
 
 int readBit(void) {
-
     // read bit
     int data = GPIOPinRead(GPIO_PORTC_BASE, GPIO_PIN_4);
 
-    // format data into a bit
+    // format data into a bit at LSB
     data = (data & GPIO_PIN_4) >> 4;
 
     // set CLK high
@@ -64,7 +63,7 @@ int readBit(void) {
 
     // set CLK low
     GPIOPinWrite(GPIO_PORTC_BASE, GPIO_PIN_5, 0);
-    // wait between 200-800 ns
+    // wait between 200-800 ns  (make it even)
     DelayRTC(100);
 
     // return read bit
@@ -72,7 +71,7 @@ int readBit(void) {
 }
 
 int rtcRead(int address) {
-    // send address
+    // send address (bits already formatted)
     // bit 7 (must be 1)
     // bit 6 (0 for clock data)
     // bit 5 - 1 are address to read, LSB first
