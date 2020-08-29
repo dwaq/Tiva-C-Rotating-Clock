@@ -10,6 +10,7 @@
 #include "driverlib/systick.h"
 #include "driverlib/sysctl.h"
 
+#include "rtc.h"
 #include "display.h"
 
 //*****************************************************************************
@@ -48,6 +49,12 @@ int main(void) {
 
     // enable the interrupt for the SysTick
     SysTickIntEnable();
+
+    // set up IO for RTC
+    rtcSetup();
+
+    // get time from RTC
+    rtcGetTime();
 
     // set up IO for display
     displaySetup();
