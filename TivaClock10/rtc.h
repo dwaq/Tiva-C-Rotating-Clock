@@ -6,7 +6,7 @@
 
 // RTC pin connections:
 // CE   PC7
-// I/O  PC6
+// I/O  PC4
 // SCLK PC5
 
 // set up pins for DS1302 RTC

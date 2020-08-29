@@ -20,27 +20,103 @@ void rtcSetup(void) {
 
     // Set the GPIOs as digital outputs
     GPIOPinTypeGPIOOutput(GPIO_PORTC_BASE, GPIO_PIN_7); // CE
-    GPIOPinTypeGPIOOutput(GPIO_PORTC_BASE, GPIO_PIN_6); // I/O
+    GPIOPinTypeGPIOOutput(GPIO_PORTC_BASE, GPIO_PIN_4); // I/O
     GPIOPinTypeGPIOOutput(GPIO_PORTC_BASE, GPIO_PIN_5); // SCLK
 
     // set all I/O low
     GPIOPinWrite(GPIO_PORTC_BASE, GPIO_PIN_7, 0);
-    GPIOPinWrite(GPIO_PORTC_BASE, GPIO_PIN_6, 0);
+    GPIOPinWrite(GPIO_PORTC_BASE, GPIO_PIN_4, 0);
     GPIOPinWrite(GPIO_PORTC_BASE, GPIO_PIN_5, 0);
+
+    // delay for a while to catch it on scope
+    DelayRTC(1000);
+}
+
+void sendBit(int bit) {
+    // set I/O
+    GPIOPinWrite(GPIO_PORTC_BASE, GPIO_PIN_4, bit << 4);
+    // wait 200 ns
+    DelayRTC(20);
+
+    // set CLK high
+    GPIOPinWrite(GPIO_PORTC_BASE, GPIO_PIN_5, GPIO_PIN_5);
+    // wait 1000ns
+    DelayRTC(100);
+
+    // set CLK low
+    GPIOPinWrite(GPIO_PORTC_BASE, GPIO_PIN_5, 0);
+    // wait between 200-800 ns
+    DelayRTC(100);
+}
+
+int readBit(void) {
+
+    // read bit
+    int data = GPIOPinRead(GPIO_PORTC_BASE, GPIO_PIN_4);
+
+    // format data into a bit
+    data = (data & GPIO_PIN_4) >> 4;
+
+    // set CLK high
+    GPIOPinWrite(GPIO_PORTC_BASE, GPIO_PIN_5, GPIO_PIN_5);
+    // wait 1000ns
+    DelayRTC(100);
+
+    // set CLK low
+    GPIOPinWrite(GPIO_PORTC_BASE, GPIO_PIN_5, 0);
+    // wait between 200-800 ns
+    DelayRTC(100);
+
+    // return read bit
+    return data;
+}
+
+int rtcRead(int address) {
+    // send address
+    // bit 7 (must be 1)
+    // bit 6 (0 for clock data)
+    // bit 5 - 1 are address to read, LSB first
+    // bit 0 (1 for read)
+    int bit = 0;
+    for(bit = 0; bit < 8; bit++) {
+        // send LSB
+        sendBit(address & 0x1);
+        // shift one for next iteration
+        address = address >> 1;
+    }
+
+    // read response
+    // change I/O to input
+    GPIOPinTypeGPIOInput(GPIO_PORTC_BASE, GPIO_PIN_4); // I/O
+
+    int response = 0;
+    for(bit = 0; bit < 8; bit++) {
+        // read a bit
+        int data = readBit();
+
+        // shift data according to bit and add to response
+        response += (data << bit);
+    }
+
+    // Change I/O back to output
+    GPIOPinTypeGPIOOutput(GPIO_PORTC_BASE, GPIO_PIN_4); // I/O
+
+    return response;
 }
 
 int rtcGetTime(void) {
     // set CS
-    GPIOPinWrite(GPIO_PORTC_BASE, GPIO_PIN_7, 1);
-    DelayRTC(500);
+    GPIOPinWrite(GPIO_PORTC_BASE, GPIO_PIN_7, GPIO_PIN_7);
+    // needs to be > 4us
+    DelayRTC(40);
 
-    // send address
-
-    // get data
+    // send command (0x81 = read seconds)
+    // and get data
+    int response = rtcRead(0x81);
 
     // reset CS
     GPIOPinWrite(GPIO_PORTC_BASE, GPIO_PIN_7, 0);
 
     // format data & return
-    return 0;
+    return response;
 }
