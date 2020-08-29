@@ -74,7 +74,8 @@ int main(void) {
         int seconds = (secL * 10) + secR;
 
         // display the time
-        displayDigits(hourL, hourR, 1, minL, minR);
+        // flash the decimal point with every second
+        displayDigits(hourL, hourR, seconds%2, minL, minR);
 
         displaySeconds(seconds);
     }
