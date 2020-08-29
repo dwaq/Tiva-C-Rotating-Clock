@@ -59,14 +59,20 @@ int main(void) {
     // Loop forever
     while (1) {
         // get time from RTC
-        int seconds = rtcGetTime();
+        int time = rtcGetTime();
 
         // format based on datasheet
-        int secL = (seconds & 0b01110000) >> 4;
-        int secR = (seconds & 0b00001111);
+        int hourL = (time & 0b000100000000000000000000) >> 20;
+        int hourR = (time & 0b000011110000000000000000) >> 16;
 
-        // display
-        displayDigits(1, 2, 1, secL, secR);
+        int minL = (time & 0b0111000000000000) >> 12;
+        int minR = (time & 0b0000111100000000) >> 8;
+
+        int secL = (time & 0b01110000) >> 4;
+        int secR = (time & 0b00001111);
+
+        // display the time
+        displayDigits(hourL, hourR, 1, minL, minR);
 
         displaySeconds(counter);
     }

@@ -89,7 +89,8 @@ int rtcRead(int address) {
     GPIOPinTypeGPIOInput(GPIO_PORTC_BASE, GPIO_PIN_4); // I/O
 
     int response = 0;
-    for(bit = 0; bit < 8; bit++) {
+    // in burst mode, so can read 3x bytes and get hours, minutes, seconds
+    for(bit = 0; bit < 24; bit++) {
         // read a bit
         int data = readBit();
 
@@ -109,9 +110,9 @@ int rtcGetTime(void) {
     // needs to be > 4us
     DelayRTC(40);
 
-    // send command (0x81 = read seconds)
-    // and get data
-    int response = rtcRead(0x81);
+    // send command for clock burst mode
+    // and get 3 bytes of data
+    int response = rtcRead(0xBF);
 
     // reset CS
     GPIOPinWrite(GPIO_PORTC_BASE, GPIO_PIN_7, 0);
