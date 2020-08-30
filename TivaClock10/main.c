@@ -25,15 +25,12 @@ __error__(char * pcFilename, uint32_t ui32Line) {
 }
 #endif
 
-int counter = 0;
+int refresh = 0;
+
+int hourL,hourR,minL,minR,seconds;
 
 void increaseCounter(void) {
-    counter++;
-
-    // restart after 60 seconds
-    if (counter > 60) {
-        counter = 0;
-    }
+    refresh++;
 }
 
 int main(void) {
@@ -58,21 +55,24 @@ int main(void) {
 
     // Loop forever
     while (1) {
-        // get time from RTC
-        int time = rtcGetTime();
+        if (refresh != 0) {
+            // get time from RTC
+            int time = rtcGetTime();
 
-        // format based on datasheet
-        int hourL = (time & 0b000100000000000000000000) >> 20;
-        int hourR = (time & 0b000011110000000000000000) >> 16;
+            // format based on datasheet
+            hourL = (time & 0b000100000000000000000000) >> 20;
+            hourR = (time & 0b000011110000000000000000) >> 16;
 
-        int minL = (time & 0b0111000000000000) >> 12;
-        int minR = (time & 0b0000111100000000) >> 8;
+            minL = (time & 0b0111000000000000) >> 12;
+            minR = (time & 0b0000111100000000) >> 8;
 
-        int secL = (time & 0b01110000) >> 4;
-        int secR = (time & 0b00001111);
+            int secL = (time & 0b01110000) >> 4;
+            int secR = (time & 0b00001111);
 
-        int seconds = (secL * 10) + secR;
+            seconds = (secL * 10) + secR;
 
+            refresh = 0;
+        }
         // display the time
         // flash the decimal point with every second
         displayDigits(hourL, hourR, seconds%2, minL, minR);
