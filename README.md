@@ -1,1 +1,3 @@
 # Tiva-C-Rotating-Clock
+
+My sister bought me the [SainSmart Rotating LED Electronic Digital Clock DIY Kit](https://www.sainsmart.com/products/rotating-led-electronic-digital-clock-diy-kit) as a birthday present and after assembling it, it just didn't work. After debugging it for a bit, I realized that Atmel AT89S52 microcontroller wasn't doing anything. I tried to read the memory out, but it was either blank, damaged, or I was locked out. So at this point, I did what any sane engineer would do and spent countless hours designing a PCB adapter board and writing code for another microcontroller so I could use my $10.99 gift.
