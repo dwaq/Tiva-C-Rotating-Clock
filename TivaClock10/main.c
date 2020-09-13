@@ -25,18 +25,19 @@ __error__(char * pcFilename, uint32_t ui32Line) {
 }
 #endif
 
-int refresh = 0;
-
+// keep track of time
 int hourL,hourR,minL,minR,seconds;
 
-void increaseCounter(void) {
+// every second, increase a counter
+int refresh = 0;
+void everySecond(void) {
     refresh++;
 }
 
 int main(void) {
 
     // set up a interrupt callback function
-    SysTickIntRegister((*increaseCounter));
+    SysTickIntRegister((*everySecond));
 
     // set the SysTick to the same as the system clock, so 1 second
     SysTickPeriodSet(SysCtlClockGet());
@@ -55,6 +56,7 @@ int main(void) {
 
     // Loop forever
     while (1) {
+        // when counter has been increased by one second SysTick
         if (refresh != 0) {
             // get time from RTC
             int time = rtcGetTime();
@@ -71,6 +73,7 @@ int main(void) {
 
             seconds = (secL * 10) + secR;
 
+            // reset counter
             refresh = 0;
         }
         // display the time
