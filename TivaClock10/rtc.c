@@ -14,19 +14,21 @@ void DelayRTC(int time) {
 void rtcSetup(void) {
     // Enable the GPIO ports
     SysCtlPeripheralEnable(SYSCTL_PERIPH_GPIOC);
+    SysCtlPeripheralEnable(SYSCTL_PERIPH_GPIOD);
 
     // Check if the peripheral access is enabled
     while (!SysCtlPeripheralReady(SYSCTL_PERIPH_GPIOC)) {}
+    while (!SysCtlPeripheralReady(SYSCTL_PERIPH_GPIOD)) {}
 
     // Set the GPIOs as digital outputs
     GPIOPinTypeGPIOOutput(GPIO_PORTC_BASE, GPIO_PIN_7); // CE
-    GPIOPinTypeGPIOOutput(GPIO_PORTC_BASE, GPIO_PIN_4); // I/O
-    GPIOPinTypeGPIOOutput(GPIO_PORTC_BASE, GPIO_PIN_5); // SCLK
+    GPIOPinTypeGPIOOutput(GPIO_PORTD_BASE, GPIO_PIN_1); // I/O
+    GPIOPinTypeGPIOOutput(GPIO_PORTD_BASE, GPIO_PIN_0); // SCLK
 
     // set all I/O low
     GPIOPinWrite(GPIO_PORTC_BASE, GPIO_PIN_7, 0);
-    GPIOPinWrite(GPIO_PORTC_BASE, GPIO_PIN_4, 0);
-    GPIOPinWrite(GPIO_PORTC_BASE, GPIO_PIN_5, 0);
+    GPIOPinWrite(GPIO_PORTD_BASE, GPIO_PIN_1, 0);
+    GPIOPinWrite(GPIO_PORTD_BASE, GPIO_PIN_0, 0);
 
     // delay for a while to catch it on scope
     DelayRTC(1000);
@@ -34,35 +36,35 @@ void rtcSetup(void) {
 
 void sendBit(int bit) {
     // set I/O according to `bit`
-    GPIOPinWrite(GPIO_PORTC_BASE, GPIO_PIN_4, bit << 4);
+    GPIOPinWrite(GPIO_PORTD_BASE, GPIO_PIN_1, bit << 1);
     // wait 200 ns
     DelayRTC(20);
 
     // set CLK high
-    GPIOPinWrite(GPIO_PORTC_BASE, GPIO_PIN_5, GPIO_PIN_5);
+    GPIOPinWrite(GPIO_PORTD_BASE, GPIO_PIN_0, GPIO_PIN_0);
     // wait 1000ns
     DelayRTC(100);
 
     // set CLK low
-    GPIOPinWrite(GPIO_PORTC_BASE, GPIO_PIN_5, 0);
+    GPIOPinWrite(GPIO_PORTD_BASE, GPIO_PIN_0, 0);
     // wait between 200-800 ns (make it even)
     DelayRTC(100);
 }
 
 int readBit(void) {
     // read bit
-    int data = GPIOPinRead(GPIO_PORTC_BASE, GPIO_PIN_4);
+    int data = GPIOPinRead(GPIO_PORTD_BASE, GPIO_PIN_1);
 
     // format data into a bit at LSB
-    data = (data & GPIO_PIN_4) >> 4;
+    data = (data & GPIO_PIN_1) >> 1;
 
     // set CLK high
-    GPIOPinWrite(GPIO_PORTC_BASE, GPIO_PIN_5, GPIO_PIN_5);
+    GPIOPinWrite(GPIO_PORTD_BASE, GPIO_PIN_0, GPIO_PIN_0);
     // wait 1000ns
     DelayRTC(100);
 
     // set CLK low
-    GPIOPinWrite(GPIO_PORTC_BASE, GPIO_PIN_5, 0);
+    GPIOPinWrite(GPIO_PORTD_BASE, GPIO_PIN_0, 0);
     // wait between 200-800 ns  (make it even)
     DelayRTC(100);
 
@@ -86,7 +88,7 @@ int rtcRead(int address) {
 
     // read response
     // change I/O to input
-    GPIOPinTypeGPIOInput(GPIO_PORTC_BASE, GPIO_PIN_4); // I/O
+    GPIOPinTypeGPIOInput(GPIO_PORTD_BASE, GPIO_PIN_1); // I/O
 
     int response = 0;
     // in burst mode, so can read 3x bytes and get hours, minutes, seconds
@@ -99,7 +101,7 @@ int rtcRead(int address) {
     }
 
     // Change I/O back to output
-    GPIOPinTypeGPIOOutput(GPIO_PORTC_BASE, GPIO_PIN_4); // I/O
+    GPIOPinTypeGPIOOutput(GPIO_PORTD_BASE, GPIO_PIN_1); // I/O
 
     return response;
 }
