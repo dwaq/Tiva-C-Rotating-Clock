@@ -31,24 +31,24 @@ void rtcSetup(void) {
     GPIOPinWrite(GPIO_PORTD_BASE, GPIO_PIN_0, 0);
 
     // delay for a while to catch it on scope
-    DelayRTC(1000);
+    //DelayRTC(1000);
 }
 
 void sendBit(int bit) {
     // set I/O according to `bit`
     GPIOPinWrite(GPIO_PORTD_BASE, GPIO_PIN_1, bit << 1);
     // wait 200 ns
-    DelayRTC(20);
+    DelayRTC(2);
 
     // set CLK high
     GPIOPinWrite(GPIO_PORTD_BASE, GPIO_PIN_0, GPIO_PIN_0);
     // wait 1000ns
-    DelayRTC(100);
+    DelayRTC(10);
 
     // set CLK low
     GPIOPinWrite(GPIO_PORTD_BASE, GPIO_PIN_0, 0);
     // wait between 200-800 ns (make it even)
-    DelayRTC(100);
+    DelayRTC(10);
 }
 
 int readBit(void) {
@@ -61,12 +61,12 @@ int readBit(void) {
     // set CLK high
     GPIOPinWrite(GPIO_PORTD_BASE, GPIO_PIN_0, GPIO_PIN_0);
     // wait 1000ns
-    DelayRTC(100);
+    DelayRTC(10);
 
     // set CLK low
     GPIOPinWrite(GPIO_PORTD_BASE, GPIO_PIN_0, 0);
     // wait between 200-800 ns  (make it even)
-    DelayRTC(100);
+    DelayRTC(10);
 
     // return read bit
     return data;
@@ -110,7 +110,7 @@ int rtcGetTime(void) {
     // set CS
     GPIOPinWrite(GPIO_PORTC_BASE, GPIO_PIN_7, GPIO_PIN_7);
     // needs to be > 4us
-    DelayRTC(40);
+    DelayRTC(4);
 
     // send command for clock burst mode
     // and get 3 bytes of data
