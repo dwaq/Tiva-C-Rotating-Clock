@@ -77,8 +77,7 @@ int main(void) {
             refresh = 0;
         }
         // display the time
-        // flash the decimal point with every second
-        displayDigits(hourL, hourR, seconds%2, minL, minR);
+        displayDigits(hourL, hourR, true, minL, minR);
 
         // add one to make 0 display at the top-most position
         displaySeconds(seconds+1);
