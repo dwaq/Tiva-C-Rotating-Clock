@@ -71,23 +71,27 @@ void setDigit(int digit, int number) {
     // turn on specific digit
     switch (digit) {
     case 1:
-        GPIOPinWrite(GPIO_PORTA_BASE, GPIO_PIN_4, 0); // Bit 8
         setSegment(number);
+        GPIOPinWrite(GPIO_PORTA_BASE, GPIO_PIN_4, 0); // Bit 8
+        Delay(DISPLAY_DELAY);
         GPIOPinWrite(GPIO_PORTA_BASE, GPIO_PIN_4, GPIO_PIN_4); // Bit 8
         break;
     case 2:
-        GPIOPinWrite(GPIO_PORTA_BASE, GPIO_PIN_5, 0); // Bit 9
         setSegment(number);
+        GPIOPinWrite(GPIO_PORTA_BASE, GPIO_PIN_5, 0); // Bit 9
+        Delay(DISPLAY_DELAY);
         GPIOPinWrite(GPIO_PORTA_BASE, GPIO_PIN_5, GPIO_PIN_5); // Bit 9
         break;
     case 3:
-        GPIOPinWrite(GPIO_PORTA_BASE, GPIO_PIN_6, 0); // Bit 10
         setSegment(number);
+        GPIOPinWrite(GPIO_PORTA_BASE, GPIO_PIN_6, 0); // Bit 10
+        Delay(DISPLAY_DELAY);
         GPIOPinWrite(GPIO_PORTA_BASE, GPIO_PIN_6, GPIO_PIN_6); // Bit 10
         break;
     case 4:
-        GPIOPinWrite(GPIO_PORTA_BASE, GPIO_PIN_7, 0); // Bit 11
         setSegment(number);
+        GPIOPinWrite(GPIO_PORTA_BASE, GPIO_PIN_7, 0); // Bit 11
+        Delay(DISPLAY_DELAY);
         GPIOPinWrite(GPIO_PORTA_BASE, GPIO_PIN_7, GPIO_PIN_7); // Bit 11
         break;
         //default:
@@ -172,7 +176,6 @@ void setSegment(int number) {
         GPIOPinWrite(GPIO_PORTB_BASE, 0xFF, 0b11111111);
         break;
     };
-    Delay(500);
 }
 
 void decimalpoint(void) {

@@ -3,6 +3,7 @@
 
 #include <stdint.h>
 
+#define DISPLAY_DELAY 500
 #define TIMER_DELAY 200
 
 // Delay for a bit.
