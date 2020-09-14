@@ -80,6 +80,7 @@ int main(void) {
         // flash the decimal point with every second
         displayDigits(hourL, hourR, seconds%2, minL, minR);
 
-        displaySeconds(seconds);
+        // add one to make 0 display at the top-most position
+        displaySeconds(seconds+1);
     }
 }
