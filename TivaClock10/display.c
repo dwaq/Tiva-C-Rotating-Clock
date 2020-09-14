@@ -184,57 +184,57 @@ void decimalpoint(void) {
 
 void displaySeconds(int digit) {
     if (digit > 56) {
-        GPIOPinWrite(GPIO_PORTA_BASE, GPIO_PIN_3, 0); // Bit 7
         GPIOPinWrite(GPIO_PORTB_BASE, 0xFF, (~0 << (digit - 56)));
+        GPIOPinWrite(GPIO_PORTA_BASE, GPIO_PIN_3, 0); // Bit 7
         Delay(TIMER_DELAY);
         GPIOPinWrite(GPIO_PORTA_BASE, GPIO_PIN_3, GPIO_PIN_3); // Bit 7
         digit = 56;
     }
     if (digit > 48) {
-        GPIOPinWrite(GPIO_PORTA_BASE, GPIO_PIN_2, 0); // Bit 6
         GPIOPinWrite(GPIO_PORTB_BASE, 0xFF, (~0 << (digit - 48)));
+        GPIOPinWrite(GPIO_PORTA_BASE, GPIO_PIN_2, 0); // Bit 6
         Delay(TIMER_DELAY);
         GPIOPinWrite(GPIO_PORTA_BASE, GPIO_PIN_2, GPIO_PIN_2); // Bit 6
         digit = 48;
     }
     if (digit > 40) {
-        GPIOPinWrite(GPIO_PORTE_BASE, GPIO_PIN_5, 0); // Bit 5
         GPIOPinWrite(GPIO_PORTB_BASE, 0xFF, (~0 << (digit - 40)));
+        GPIOPinWrite(GPIO_PORTE_BASE, GPIO_PIN_5, 0); // Bit 5
         Delay(TIMER_DELAY);
         GPIOPinWrite(GPIO_PORTE_BASE, GPIO_PIN_5, GPIO_PIN_5); // Bit 5
         digit = 40;
     }
     if (digit > 32) {
-        GPIOPinWrite(GPIO_PORTE_BASE, GPIO_PIN_4, 0); // Bit 4
         GPIOPinWrite(GPIO_PORTB_BASE, 0xFF, (~0 << (digit - 32)));
+        GPIOPinWrite(GPIO_PORTE_BASE, GPIO_PIN_4, 0); // Bit 4
         Delay(TIMER_DELAY);
         GPIOPinWrite(GPIO_PORTE_BASE, GPIO_PIN_4, GPIO_PIN_4); // Bit 4
         digit = 32;
     }
     if (digit > 24) {
-        GPIOPinWrite(GPIO_PORTE_BASE, GPIO_PIN_3, 0); // Bit 3
         GPIOPinWrite(GPIO_PORTB_BASE, 0xFF, (~0 << (digit - 24)));
+        GPIOPinWrite(GPIO_PORTE_BASE, GPIO_PIN_3, 0); // Bit 3
         Delay(TIMER_DELAY);
         GPIOPinWrite(GPIO_PORTE_BASE, GPIO_PIN_3, GPIO_PIN_3); // Bit 3
         digit = 24;
     }
     if (digit > 16) {
-        GPIOPinWrite(GPIO_PORTE_BASE, GPIO_PIN_2, 0); // Bit 2
         GPIOPinWrite(GPIO_PORTB_BASE, 0xFF, (~0 << (digit - 16)));
+        GPIOPinWrite(GPIO_PORTE_BASE, GPIO_PIN_2, 0); // Bit 2
         Delay(TIMER_DELAY);
         GPIOPinWrite(GPIO_PORTE_BASE, GPIO_PIN_2, GPIO_PIN_2); // Bit 2
         digit = 16;
     }
     if (digit > 8) {
-        GPIOPinWrite(GPIO_PORTE_BASE, GPIO_PIN_1, 0); // Bit 1
         GPIOPinWrite(GPIO_PORTB_BASE, 0xFF, (~0 << (digit - 8)));
+        GPIOPinWrite(GPIO_PORTE_BASE, GPIO_PIN_1, 0); // Bit 1
         Delay(TIMER_DELAY);
         GPIOPinWrite(GPIO_PORTE_BASE, GPIO_PIN_1, GPIO_PIN_1); // Bit 1
         digit = 8;
     }
     if (digit >= 0) {
-        GPIOPinWrite(GPIO_PORTE_BASE, GPIO_PIN_0, 0); // Bit 0
         GPIOPinWrite(GPIO_PORTB_BASE, 0xFF, (~0 << (digit - 0)));
+        GPIOPinWrite(GPIO_PORTE_BASE, GPIO_PIN_0, 0); // Bit 0
         Delay(TIMER_DELAY);
         GPIOPinWrite(GPIO_PORTE_BASE, GPIO_PIN_0, GPIO_PIN_0); // Bit 0
     }
